@@ -115,8 +115,14 @@ class User extends dbConfig{//extend properties of the parentclass
 
             }
 
+           /* public function adminLoginStatus(){
+                if(empty($_SESSION["adminUserId"])){
+                    header("Location: login.php");
+                }
+            }*/
+
             public function getUserList(){
-                $sqlQuery = "SELECT * FROM" $this->users. "WHERE user_id != '".$_SESSION['adminUserId']."' " ;
+                $sqlQuery = "SELECT * FROM" .$this->users. "WHERE user_id != '".$_SESSION['adminUserId']."' " ;
                 if(!empty($_POST["search"]["value"])){
                     $sqlQuery .= '(user_id LIKE "%'.$_POST["search"]["value"].'%" ';
                     $sqlQuery .= 'OR fname LIKE "%' .$_POST["search"]["value"].'%" ';
@@ -143,7 +149,7 @@ class User extends dbConfig{//extend properties of the parentclass
                 $numRows = mysqli_num_rows($result1);
 
                 $userData = array();
-                while($users mysqli_fetch_assoc($result)){
+                while($users = mysqli_fetch_assoc($result)){
                     $userRows = array();
                     $status = '';
                 if($users['status']== 'active'){
@@ -153,9 +159,9 @@ class User extends dbConfig{//extend properties of the parentclass
                 } else if($users['status'] == 'deleted') {
                     $status = '<span class="label label-danger">Deleted</span>';
                 }
-                $userRows[]= $users['user_id'];
+                //$userRows[]= $users['user_id'];
                 $userRows[]= $users['fname'];
-                $userRows[]= $users['fname'];
+                $userRows[]= $users['lname'];
                 $userRows[]= $users['email'];
                 $userRows[]= $users['phone'];
                 $userRows[]= $users['utype'];
@@ -176,7 +182,9 @@ class User extends dbConfig{//extend properties of the parentclass
                 echo json_encode ($output);
 
             }
-            
+
+
+
 
 
         }

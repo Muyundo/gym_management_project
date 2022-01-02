@@ -2,13 +2,18 @@
 
 <?php
 //session_start();
+
+//include ('../includes/connect.php');
+include ('../includes/action.php');
+$user = new User();
+//$user -> adminLoginStatus();
+
 include ('../includes/header.php');
-include ('../includes/connect.php');
 
 
 
 
-$users = mysqli_query($conn, "SELECT * FROM users");
+//$users = mysqli_query($conn, "SELECT * FROM users");
 //define variables and innitialize with empty values
 ?>
   <!-- Content Wrapper. Contains page content -->
@@ -42,16 +47,18 @@ $users = mysqli_query($conn, "SELECT * FROM users");
               <div class="col-md-2"  alignment= "right">
 					<button type="button" name="add" id="addUser" class="btn btn-success btn-xs">Add user/admin</button>
 				</div>
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="userList" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Phone number</th>
                     <th>Email</th>
+                    <th>Phone</th>
                     <th>Role</th>
                     <th>Date Created</th>
-                    <th>Action</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
